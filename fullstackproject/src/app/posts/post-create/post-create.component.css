@@ -1,0 +1,10 @@
+.formBloc{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.saveBtn{
+  margin-bottom: 10px;
+  align-self: start;
+}

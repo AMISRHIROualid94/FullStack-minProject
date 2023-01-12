@@ -23,4 +23,8 @@ posts:Post[] = [
   getAllPosts(){
     return this.posts
   }
+
+  addNewPost(post:Post){
+    this.posts.push(post)
+  }
 }
