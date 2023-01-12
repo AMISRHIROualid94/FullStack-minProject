@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
@@ -13,23 +14,37 @@ export class PostCreateComponent implements OnInit{
   newPost:Post
   title=""
   content=""
-
+  fg:FormGroup
 
   constructor(private postService :PostService,
-    private router:Router){}
+    private router:Router,
+    private fb:FormBuilder){}
 
   ngOnInit(): void {
+    this.fg = this.fb.group({
+      post:this.fb.group({
+        titleInput:['',[Validators.required,Validators.minLength(3)]],
+        contentInput : ['',Validators.required]
+      })
+   
+    })
+
     
   }
 
-  onAddNewPost(){
+
+  get f(){
+    return this.fg.controls
+  }
+
+
+  onAddNewPost(post:any){
     this.newPost = new Post(
-      this.title,
-      this.content
+      post.controls.titleInput.value,
+      post.controls.contentInput.value
     )
       this.postService.addNewPost(this.newPost)
       this.router.navigate(['/'])
-      console.log(this.newPost);
 
   }
 }

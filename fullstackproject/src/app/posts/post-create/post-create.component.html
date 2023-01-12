@@ -1,14 +1,17 @@
 <mat-card>
-    <div class="formBloc">
+  <form [formGroup]="fg" (ngSubmit)="onAddNewPost(fg.controls['post'])">
+    <div class="formBloc" formGroupName="post">
       <mat-form-field>
         <mat-label>Title</mat-label>
-        <input matInput placeholder="Post Title" [(ngModel)]="title">
+        <input matInput placeholder="Post Title" formControlName="titleInput">
       </mat-form-field>
     
       <mat-form-field>
         <mat-label>Content</mat-label>
-        <textarea matInput placeholder="Post Content" [(ngModel)]="content"></textarea>
+        <textarea matInput placeholder="Post Content" formControlName="contentInput"></textarea>
       </mat-form-field>
-      <button class="saveBtn" mat-raised-button color="accent" (click)="onAddNewPost()">Save Post</button>
+      <button class="saveBtn" mat-raised-button color="accent" type="submit"
+      [disabled]="fg.invalid">Save Post</button>
     </div>
+    </form>
 </mat-card>
