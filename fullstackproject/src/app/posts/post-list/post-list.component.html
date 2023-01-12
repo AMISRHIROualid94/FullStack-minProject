@@ -1,1 +1,3 @@
-<p>post-list works!</p>
+<mat-accordion *ngFor="let post of posts">
+<app-post-item [post]="post"></app-post-item>
+</mat-accordion>

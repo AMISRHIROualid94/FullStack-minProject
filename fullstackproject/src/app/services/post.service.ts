@@ -10,8 +10,17 @@ posts:Post[] = [
   {
     title:"postTest",
     content:"Content for post test"
+  },
+  {
+    title:"postTest2",
+    content:"Content for post test2"
   }
 ]
 
   constructor() { }
+
+
+  getAllPosts(){
+    return this.posts
+  }
 }
