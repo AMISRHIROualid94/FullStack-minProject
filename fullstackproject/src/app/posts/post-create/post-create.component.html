@@ -1,11 +1,11 @@
 <mat-card>
-  <form [formGroup]="fg" (ngSubmit)="onAddNewPost(fg.controls['post'])">
+  <form [formGroup]="fg" (ngSubmit)="onAddNewPost(fg.controls.post.controls)">
     <div class="formBloc" formGroupName="post">
       <mat-form-field>
         <mat-label>Title</mat-label>
         <input matInput placeholder="Post Title" formControlName="titleInput">
       </mat-form-field>
-    
+
       <mat-form-field>
         <mat-label>Content</mat-label>
         <textarea matInput placeholder="Post Content" formControlName="contentInput"></textarea>
