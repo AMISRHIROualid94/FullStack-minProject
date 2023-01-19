@@ -6,6 +6,7 @@ import { Post } from '../models/post.model';
 })
 export class PostService {
 
+
 posts:Post[] = [
   {
     title:"postTest",
@@ -17,7 +18,9 @@ posts:Post[] = [
   }
 ]
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
 
   getAllPosts(){
@@ -32,6 +35,10 @@ posts:Post[] = [
       this.posts[index] = newPost
   }
 
+
+  deletePost(index:number){
+    this.posts.splice(index,1)
+  }
 
   addNewPost(post:Post){
     this.posts.push(post)

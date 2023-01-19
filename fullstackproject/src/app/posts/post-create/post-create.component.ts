@@ -14,7 +14,7 @@ export class PostCreateComponent implements OnInit{
   newPost:Post
   title=""
   content=""
-
+  mode=""
   postIndex=0;
 
   constructor(private postService :PostService,
@@ -23,10 +23,18 @@ export class PostCreateComponent implements OnInit{
     private fb:FormBuilder){}
 
   ngOnInit(): void {
-
     this.ActiveRoute.paramMap.subscribe(param =>{
-      this.postIndex = +param.get('postIndex')!
-      console.log(this.postService.findPostByIndex(this.postIndex));
+      if(param.has('postIndex')){
+        this.mode = "edit"
+        this.postIndex = +param.get('postIndex')!
+        const fpost = this.postService.findPostByIndex(this.postIndex)
+        this.f.post.controls.titleInput.setValue(fpost.title)
+        this.f.post.controls.contentInput.setValue(fpost.content)
+      }
+      else{
+        this.mode = "create"
+      }
+     
     })
     
     
@@ -53,5 +61,15 @@ export class PostCreateComponent implements OnInit{
       this.postService.addNewPost(this.newPost)
       this.router.navigate(['/'])
 
+  }
+
+
+  onEditPost(newPost:any){
+    this.newPost = new Post(
+      newPost.titleInput.value,
+      newPost.contentInput.value
+    )
+    this.postService.updatePost(this.postIndex,this.newPost)
+    this.router.navigate(['/'])
   }
 }

@@ -1,5 +1,8 @@
+<h2 *ngIf="mode=='create'">Add New Post</h2>
+<h2 *ngIf="mode=='edit'">Update Post</h2>
 <mat-card>
-  <form [formGroup]="fg" (ngSubmit)="onAddNewPost(fg.controls.post.controls)">
+  <form [formGroup]="fg" 
+  (ngSubmit)="mode=='create'?onAddNewPost(fg.controls.post.controls):onEditPost(fg.controls.post.controls)">
     <div class="formBloc" formGroupName="post">
       <mat-form-field>
         <mat-label>Title</mat-label>
@@ -11,7 +14,11 @@
         <textarea matInput placeholder="Post Content" formControlName="contentInput"></textarea>
       </mat-form-field>
       <button class="saveBtn" mat-raised-button color="accent" type="submit"
-      [disabled]="fg.invalid">Save Post</button>
+      [disabled]="fg.invalid"
+      *ngIf="mode=='create'">Save Post</button>
+      <button class="saveBtn" mat-raised-button color="accent" type="submit"
+      [disabled]="fg.invalid"
+      *ngIf="mode=='edit'" >edit Post</button>
     </div>
     </form>
 </mat-card>
