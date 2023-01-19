@@ -1,5 +1,9 @@
 <p>
   <mat-toolbar color="primary">
-    <span>My Application</span>
+    <ul>
+      <li routerLink="/" routerLinkActive="active" 
+      [routerLinkActiveOptions]="{exact:true}">List Posts</li>
+      <li routerLink="/create" routerLinkActive="active">New Post</li>
+    </ul>
   </mat-toolbar>
 </p>
