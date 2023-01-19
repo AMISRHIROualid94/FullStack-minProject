@@ -24,6 +24,10 @@ posts:Post[] = [
     return this.posts
   }
 
+  findPostByIndex(index:number){
+    return this.posts[index]
+  }
+
   addNewPost(post:Post){
     this.posts.push(post)
   }
