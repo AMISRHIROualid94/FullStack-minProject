@@ -9,6 +9,10 @@ import { Post } from 'src/app/models/post.model';
 export class PostItemComponent {
 
   @Input() post:Post
+  @Input() index: number
 
 
+  onEditPost(index:number){
+    
+  }
 }

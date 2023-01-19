@@ -28,6 +28,11 @@ posts:Post[] = [
     return this.posts[index]
   }
 
+  updatePost(index:number,newPost:Post){
+      this.posts[index] = newPost
+  }
+
+
   addNewPost(post:Post){
     this.posts.push(post)
   }
